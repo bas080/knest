@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 6
+  - 7
+  - 8
+  - 9
+services:
+  - mysql
+before_install:
+  - mysql < setup.sql
+install:
+  - npm install
+script:
+  - npm test
