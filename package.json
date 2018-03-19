@@ -1,8 +1,12 @@
 {
   "name": "knest",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Rollback db after knex test finishes",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bas080/knest.git"
+  },
   "scripts": {
     "format": "prettier-eslint --write ./index.*",
     "lint": "./script/lint.sh ./index.*",
