@@ -1,0 +1,30 @@
+{
+  "name": "knest",
+  "version": "0.0.0",
+  "description": "Rollback db after knex test finishes",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier-eslint --write ./index.*",
+    "lint": "./script/lint.sh ./index.*",
+    "prepare": "npm test && npm run lint",
+    "pretest": "npm prune",
+    "test": "tape index.spec.js"
+  },
+  "keywords": [
+    "knex",
+    "knest",
+    "rollback",
+    "test"
+  ],
+  "author": "Bassim Huis",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.14.4"
+  },
+  "devDependencies": {
+    "lodash.times": "^4.3.2",
+    "mysql": "^2.15.0",
+    "prettier-eslint-cli": "^4.7.1",
+    "tape": "^4.9.0"
+  }
+}
