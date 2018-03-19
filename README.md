@@ -1,4 +1,5 @@
 # Knest
+[![Build Status](https://travis-ci.org/bas080/knest.svg?branch=master)](https://travis-ci.org/bas080/knest)
 
 Enable rollback for your tests that use **knex**.
 
