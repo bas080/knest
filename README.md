@@ -29,7 +29,7 @@ describe('User', () => {
   it('should insert a new user record', knest((trx) => {
     const user = {
       name: "Tom",
-      email: tom@example.com
+      email: "tom@example.com"
     }
 
     return createUser(trx, user)
@@ -42,7 +42,7 @@ describe('User', () => {
   it('should insert a new user record', knest((trx) => {
     const user = {
       name: "Jerry",
-      email: jerry@example.com
+      email: "jerry@example.com"
     }
 
     return createUser(trx, user)
