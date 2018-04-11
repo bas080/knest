@@ -1,0 +1,43 @@
+const test = require('tape')
+const {
+  mysql,
+  users,
+  resetDatabase,
+  findUsers,
+  createUsers,
+  createUser,
+} = require('./index.spec')
+
+const knest = require('./index').bind(null, mysql)
+
+test.onFinish(() => process.exit())
+
+test('should reset the database user table', t => {
+  resetDatabase(mysql)
+    .then(() => t.end())
+    .catch(t.end)
+})
+
+test(
+  'should create user in user table',
+  knest((trx, t) => {
+    const user = users[0]
+
+    return createUser(trx, user)
+      .then(record => t.deepEqual(record, user))
+      .then(() => t.end())
+  })
+)
+
+test(
+  'should create users using multiple transactions',
+  knest((trx, t) => {
+    return createUsers(trx, users).then(() => t.end())
+  })
+)
+
+test('should have rolled back all the insert queries', t => {
+  findUsers(mysql)
+    .then(result => t.deepEqual(result, []))
+    .then(() => t.end())
+})

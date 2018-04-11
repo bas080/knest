@@ -7,5 +7,10 @@ module.exports = {
   "rules": {
     "no-console": "off",
     "semi": ["error", "never"],
+  },
+  "globals": {
+    "after": true,
+    "describe": true,
+    "it": true,
   }
 };
