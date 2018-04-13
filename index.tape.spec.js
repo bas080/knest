@@ -18,23 +18,17 @@ test('should reset the database user table', t => {
     .catch(t.end)
 })
 
-test(
-  'should create user in user table',
-  knest((trx, t) => {
+test('should create user in user table', t =>
+  knest(trx => {
     const user = users[0]
 
     return createUser(trx, user)
       .then(record => t.deepEqual(record, user))
       .then(() => t.end())
-  })
-)
+  }))
 
-test(
-  'should create users using multiple transactions',
-  knest((trx, t) => {
-    return createUsers(trx, users).then(() => t.end())
-  })
-)
+test('should create users using multiple transactions', t =>
+  knest(trx => createUsers(trx, users).then(() => t.end())))
 
 test('should have rolled back all the insert queries', t => {
   findUsers(mysql)

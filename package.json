@@ -13,7 +13,8 @@
     "prepublishOnly": "npm prune && npm test && npm run lint",
     "test": "npm run test-tape && npm run test-mocha",
     "test-tape": "tape index.tape.spec.js",
-    "test-mocha": "mocha index.mocha.spec.js"
+    "test-mocha": "mocha index.mocha.spec.js",
+    "docs": "mash doc/README.md > README.md"
   },
   "precommit": "prepublishOnly",
   "keywords": [

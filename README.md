@@ -5,63 +5,52 @@ Enable rollback for your tests that use **knex**.
 
 Knest works with most test frameworks out there.
 
-
 # Installation
 
 `npm install knest --save-dev`
-
 
 # Usage
 
 > Example using mocha as the testing framework
 
-Instead of reading this example I'd advice you to look at the
-[knest tests](./index.spec.js)
+This example is part of the knex mocha [tests](./index.mocha.spec.js). They
+can be run using using the following npm script.
 
-```js
-// user.spec.js
-const knex = require('knex')({...knexConfig})
-const knest = require('knest').bind(null, knex)
-const assert = require('assert')
-const {createUser, countUser} = require('./user')
-
-describe('User', () => {
-  it('should insert a new user record', knest((trx) => {
-    const user = {
-      name: "Tom",
-      email: "tom@example.com"
-    }
-
-    return createUser(trx, user)
-    .then(() => {
-      return countUser(trx, user)
-    })
-    .then(count => assert.equal(count, 1))
-  }))
-
-  it('should insert a new user record', knest((trx) => {
-    const user = {
-      name: "Jerry",
-      email: "jerry@example.com"
-    }
-
-    return createUser(trx, user)
-    .then(() => {
-      return countUser(trx, user)
-    })
-    .then(count => assert.equal(count, 1))
-  }))
-})
+```bash
+./doc/script/mocha-tests.sh
 ```
 
-Assuming that mocha and Knest are installed and knex is correctly configured, we can
-run these tests with the following command:
+```js
+const assert = require('assert')
+const {
+  mysql,
+  users,
+  resetDatabase,
+  findUsers,
+  createUsers,
+  createUser,
+} = require('./index.spec')
+const knest = require('./index').bind(null, mysql)
 
-`mocha ./user.spec.js`
+describe('Mocha & Knest', () => {
+  it('should reset the database user table', () => resetDatabase(mysql))
 
-Notice that count stays 1. That's because the first test is run within
-a transaction that is rolled back after the test has completed.
+  it('should create user in user table', () => knest(trx =>
+    createUser(trx, users[0]).then(record =>
+      assert.deepEqual(record, users[0])
+    )
+  ))
 
+  it('should create users using multiple transactions', () => knest(trx =>
+    createUsers(trx, users)
+  ))
+
+  it('should have rolled back all the insert queries', () =>
+    findUsers(mysql).then(result => assert.deepEqual(result, [])))
+
+  after(() => process.exit())
+})
+```
 
 # Reference
 
@@ -72,26 +61,23 @@ Knest exports a single function.
 What Knest basically does is wrap the test function and adds a knex transaction as
 the first argument of the test callback function.
 
-**returns** a function that expects the test frameworks test function
-arguments.
+**returns** a promise which will rollback the transaction when it resolves.
+This is required. Throws if a promise is not returned.
 
 ### knexConnection
 
-This value should be a [knex-connection](http://knexjs.org/#Installation-client).
+This value should be
+a [knex-connection](http://knexjs.org/#Installation-client) or a knex
+transaction object.
 
-### testFn(knexTransaction, [...testFnArgs])
+### testFn(knexTransaction)
 
 The testFn is called when the tests are run. It is called with the following
-arguments:
+arguments
 
 **knexTransaction** is an instance of a knex transaction that uses the
 previously configured knex connection.
 
-**[...testFnArgs]** are the optional arguments that are the test framework's
-test fn args.
-
-**returns** a promise which will rollback the transaction when it resolves.
-This is required. Throws if a promise is not returned.
 
 # Test
 
@@ -100,10 +86,21 @@ Knest is tested using MySQL. Make sure you have MySQL installed. The
 tests.
 
 ```bash
+#!/bin/bash
+
 npm install
 sudo mysql -p < ./setup.sql
-npm test
 ```
+
+Once the test requirements are setup you can run the tests using `npm test`
+
+# Changelog
+
+## 1.0.0
+
+- Simpler function signature for test fn. Use a separate function definition
+  for your test fn and your transaction function. See
+  [reference](./doc/section/reference.md)
 
 # Contribute
 
@@ -112,4 +109,6 @@ Some suggestions for contributing to this library are:
 - Use this library for your knex related tests.
 - Write tests that use different test frameworks.
 - Write tests for other databases knex supports.
+- Support for multiple connections/transactions
 - Contribute what you feel is important.
+
