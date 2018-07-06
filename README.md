@@ -17,7 +17,7 @@ This example is part of the knex mocha [tests](./index.mocha.spec.js). They
 can be run using using the following npm script.
 
 ```bash
-./doc/script/mocha-tests.sh
+npm run test-mocha
 ```
 
 ```js
@@ -35,15 +35,15 @@ const knest = require('./index').bind(null, mysql)
 describe('Mocha & Knest', () => {
   it('should reset the database user table', () => resetDatabase(mysql))
 
-  it('should create user in user table', () => knest(trx =>
-    createUser(trx, users[0]).then(record =>
-      assert.deepEqual(record, users[0])
-    )
-  ))
+  it('should create user in user table', () =>
+    knest(trx =>
+      createUser(trx, users[0]).then(record =>
+        assert.deepEqual(record, users[0])
+      )
+    ))
 
-  it('should create users using multiple transactions', () => knest(trx =>
-    createUsers(trx, users)
-  ))
+  it('should create users using multiple transactions', () =>
+    knest(trx => createUsers(trx, users)))
 
   it('should have rolled back all the insert queries', () =>
     findUsers(mysql).then(result => assert.deepEqual(result, [])))
@@ -111,4 +111,3 @@ Some suggestions for contributing to this library are:
 - Write tests for other databases knex supports.
 - Support for multiple connections/transactions
 - Contribute what you feel is important.
-
