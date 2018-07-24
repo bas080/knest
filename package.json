@@ -1,6 +1,6 @@
 {
   "name": "knest",
-  "version": "1.0.0",
+  "version": "1.0.0-citypantry.0",
   "description": "Rollback db after knex test finishes",
   "main": "index.js",
   "repository": {
