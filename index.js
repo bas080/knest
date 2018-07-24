@@ -6,7 +6,7 @@ function knest(connection, testFn) {
   return connection
     .transaction(trx => {
       try {
-        testFn(trx).tap(
+        testFn(trx).then(
           () => trx.rollback(rolledBackAfterSuccess),
           trx.rollback
         )
