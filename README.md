@@ -1,5 +1,5 @@
 # Knest
-[![Build Status](https://travis-ci.org/bas080/knest.svg?branch=master)](https://travis-ci.org/bas080/knest) [![Greenkeeper badge](https://badges.greenkeeper.io/bas080/knest.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/bas080/knest.svg?branch=master)](https://travis-ci.org/bas080/knest)
 
 Enable rollback for your tests that use **knex**.
 
@@ -95,6 +95,10 @@ sudo mysql -p < ./setup.sql
 Once the test requirements are setup you can run the tests using `npm test`
 
 # Changelog
+
+## 1.1.0
+
+- Support native promises by not using the tap method on a promise.
 
 ## 1.0.0
 
