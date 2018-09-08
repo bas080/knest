@@ -128,14 +128,14 @@ Knest is tested using MySQL. Make sure you have MySQL installed. The
 `./setup.sql` file makes it easy to setup a database and user for running the
 tests.
 
-```bash
-#!/bin/bash
-
-npm install
-sudo mysql -p < ./setup.sql
+```sql
+DROP DATABASE IF EXISTS knest;
+CREATE DATABASE knest;
+GRANT ALL PRIVILEGES ON knest.* TO knest@localhost IDENTIFIED BY 'knest';
+FLUSH PRIVILEGES;
 ```
 
-Once the test requirements are setup you can run the tests using `npm test`
+Once the test requirements are setup you can run the tests using `npm test`.
 
 # Changelog
 
