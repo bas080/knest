@@ -18,3 +18,5 @@ require ./doc/section/test.md
 require ./doc/section/changelog.md
 
 require ./doc/section/contribute.md
+
+require ./doc/section/license.md

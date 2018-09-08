@@ -115,3 +115,7 @@ Some suggestions for contributing to this library are:
 - Write tests for other databases knex supports.
 - Support for multiple connections/transactions
 - Contribute what you feel is important.
+
+# License
+
+[MIT License](./LICENSE)
