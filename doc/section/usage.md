@@ -12,3 +12,14 @@ require ./doc/script/mocha-tests.sh
 ```js
 require ./index.mocha.spec.js
 ```
+
+You can consider using `async / await` syntax as the knex helper returns
+a promise.
+
+```bash
+require  ./doc/script/async-tests.sh
+```
+
+```js
+require ./index.async.spec.js
+```

@@ -1,1 +1,1 @@
-npm run test-mocha
+npm install npx -g && npx mocha ./index.mocha.spec.js

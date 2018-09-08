@@ -11,9 +11,8 @@
     "format": "prettier-eslint --write ./index.*",
     "lint": "./script/lint.sh ./index.*",
     "prepublishOnly": "npm prune && npm test && npm run lint",
-    "test": "npm run test-tape && npm run test-mocha",
-    "test-tape": "tape index.tape.spec.js",
-    "test-mocha": "mocha index.mocha.spec.js",
+    "test": "node *.spec.js && npm run test:docs",
+    "test:docs": "cat ./doc/script/* | bash",
     "docs": "mash doc/README.md > README.md"
   },
   "precommit": "prepublishOnly",
