@@ -14,7 +14,7 @@ Knest works with most test frameworks out there.
 > Example using mocha as the testing framework
 
 This example is part of the knex mocha [tests](./index.mocha.spec.js). They
-can be run using using the following npm script.
+can be run using the following npm script.
 
 ```bash
 npm run test-mocha
@@ -115,3 +115,7 @@ Some suggestions for contributing to this library are:
 - Write tests for other databases knex supports.
 - Support for multiple connections/transactions
 - Contribute what you feel is important.
+
+# License
+
+[MIT](../../LICENSE)
