@@ -29,7 +29,7 @@
     "knex": "^0.14.6"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.0",
     "mysql": "^2.15.0",
     "pre-commit": "^1.2.2",
     "prettier-eslint-cli": "^4.7.1",
