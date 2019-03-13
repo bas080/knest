@@ -26,13 +26,13 @@
   "author": "Bassim Huis",
   "license": "MIT",
   "dependencies": {
-    "knex": "^0.14.6"
+    "knex": "^0.16.5"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
-    "mysql": "^2.15.0",
+    "mocha": "^6.1.4",
+    "mysql": "^2.17.1",
     "pre-commit": "^1.2.2",
     "prettier-eslint-cli": "^4.7.1",
-    "tape": "^4.9.1"
+    "tape": "^4.10.1"
   }
 }
