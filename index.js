@@ -2,7 +2,7 @@
 
 const rolledBackAfterSuccess = {}
 
-function knest(connection, testFn) {
+function knest (connection, testFn) {
   return connection
     .transaction(trx => {
       try {

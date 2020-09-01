@@ -4,38 +4,38 @@ const mysql = require('knex')({
     host: 'localhost',
     user: 'knest',
     password: 'knest',
-    database: 'knest',
-  },
+    database: 'knest'
+  }
 })
 const users = [
-  {name: 'Jerry', email: 'jerry@example.com'},
-  {name: 'Tom', email: 'tom@example.com'},
-  {name: 'Jim', email: 'jim@example.com'},
+  { name: 'Jerry', email: 'jerry@example.com' },
+  { name: 'Tom', email: 'tom@example.com' },
+  { name: 'Jim', email: 'jim@example.com' }
 ]
 
-function createUser(trx, user) {
+function createUser (trx, user) {
   return trx('users')
     .insert(user)
     .then(() => findUser(trx, user))
 }
 
-function createUsers(trx, users) {
+function createUsers (trx, users) {
   return trx.transaction(trx =>
     Promise.all(users.map(user => createUser(trx, user)))
   )
 }
 
-function findUser(trx, user) {
+function findUser (trx, user) {
   return trx('users')
     .where(user)
     .first('name', 'email')
 }
 
-function findUsers(trx) {
+function findUsers (trx) {
   return trx('users').select('name', 'email')
 }
 
-function resetDatabase(connection) {
+function resetDatabase (connection) {
   return connection.schema.dropTableIfExists('users').then(() =>
     connection.schema.createTable('users', table => {
       table.string('name')
@@ -52,5 +52,5 @@ module.exports = {
   findUsers,
   findUser,
   users,
-  mysql,
+  mysql
 }
