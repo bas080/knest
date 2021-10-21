@@ -96,41 +96,6 @@ Then install, prune and run the tests.
 { npm i && npm prune; } > /dev/null
 npm t
 ```
-```
-
-> knest@1.1.3 test
-> npx standard && npm run test-tape && npm run test-mocha
-
-
-> knest@1.1.3 test-tape
-> tape index.tape.spec.js
-
-TAP version 13
-# should reset the database user table
-# should create user in user table
-ok 1 should be loosely deeply equivalent
-# should create users using multiple transactions
-# should have rolled back all the insert queries
-ok 2 should be loosely deeply equivalent
-
-1..2
-# tests 2
-# pass  2
-
-# ok
-
-
-> knest@1.1.3 test-mocha
-> mocha index.mocha.spec.js
-
-
-
-  Mocha & Knest
-    ✔ should reset the database user table (115ms)
-    ✔ should create user in user table
-    ✔ should create users using multiple transactions
-    ✔ should have rolled back all the insert queries
-```
 
 # Contribute
 

@@ -1,0 +1,26 @@
+# Contributing
+
+## Updating dependencies
+
+```bash bash
+npx npm-check-updates --cwd "$PWD" --doctor --upgrade
+```
+
+## Documentation
+
+Knest uses [markatzea][1] to generate the documentation.
+
+Simply run in your terminal: `$ markatzea CONTRIBUTING.mz > CONTRIBUTING.md`
+
+You can also just generate the README.md by running:
+
+```bash bash
+markatzea README.mz > README.md
+```
+
+## Thank You
+
+Thank you for reading.
+
+[1]:https://github.com/bas080/markatzea
+[2]:https://github.com/bas080/memplate
