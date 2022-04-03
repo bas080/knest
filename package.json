@@ -1,6 +1,6 @@
 {
   "name": "knest",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Rollback db after knex test finishes",
   "main": "index.js",
   "repository": {
